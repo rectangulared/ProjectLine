@@ -1,0 +1,6 @@
+#Files
+*.user
+
+#Folders
+x64
+.vs
