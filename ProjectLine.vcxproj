@@ -72,19 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(VULKAN_SDK)\Lib;$(ProjectDir)extern\GLFW\libs\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(VULKAN_SDK)\Lib;$(ProjectDir)extern\GLFW\libs\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(VULKAN_SDK)\Lib;$(ProjectDir)extern\GLFW\libs\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(VULKAN_SDK)\Lib;$(ProjectDir)extern\GLFW\libs\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)extern\GLFW\include;$(VULKAN_SDK)\Include;$(ProjectDir)extern\GLM\glm;$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -163,7 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LineEngine.cpp" />
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\LineEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
