@@ -13,6 +13,14 @@ namespace le
         uint32_t windowHeight_;
         uint32_t windowWidth_;
 
+        LineEngine();
+
+        LineEngine(const LineEngine&) = delete;
+        LineEngine& operator=(const LineEngine&) = delete;
+
+        LineEngine(LineEngine&&) = delete;
+        LineEngine& operator=(LineEngine&&) = delete;
+
         void initVulkan();
 
         void update();
@@ -26,7 +34,11 @@ namespace le
 
         std::unique_ptr<GLFWwindow, DestroyGLFWWindow> window_;
 
+        VkInstance vkInstance_;
+
         void initWindow();
+
+        void createInstance();
 
         void clean();
     };
