@@ -17,5 +17,9 @@ int main() {
         std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;
     }
+    catch (...)
+    {
+        std::cerr << "Unknown Error" << std::endl;
+    }
     return 0;
 }
