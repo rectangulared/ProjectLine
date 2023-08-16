@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -78,11 +79,17 @@ namespace le
         VkQueue presentQueue_;
         VkPhysicalDevice physicalDevice_ = VK_NULL_HANDLE;
         VkSurfaceKHR surface_;
+        VkSwapchainKHR swapChain_;
+        VkFormat swapChainImageFormat_;
+        VkExtent2D swapChainExtent_;
+
+        std::vector<VkImage> swapChainImages_;
 
         void clean();
         void createInstance();
         void createLogicalDevice();
         void createSurface();
+        void createSwapChain();
         void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator);
         void initWindow();
         void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
@@ -108,5 +115,8 @@ namespace le
         VkSurfaceFormatKHR selectSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 
         VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
+
+        VkExtent2D selectSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+
     };
 }
