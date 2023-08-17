@@ -84,8 +84,11 @@ namespace le
         VkExtent2D swapChainExtent_;
 
         std::vector<VkImage> swapChainImages_;
+        std::vector<VkImageView> swapChainImageViews_;
 
         void clean();
+        void createGraphicsPipeline();
+        void createImageViews();
         void createInstance();
         void createLogicalDevice();
         void createSurface();
