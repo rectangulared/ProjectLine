@@ -27,4 +27,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\vertex\default.vert" />
+    <None Include="shaders\fragment\default.frag" />
+    <None Include="README.md" />
+    <None Include="LICENSE.md" />
+    <None Include=".gitmodules" />
+    <None Include=".gitignore" />
+    <None Include="compileShaders.py" />
+  </ItemGroup>
 </Project>

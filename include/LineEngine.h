@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <memory>
 #include <optional>
@@ -11,6 +12,8 @@
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
+
+#include <shaderc/shaderc.hpp>
 
 namespace le
 {
@@ -82,6 +85,7 @@ namespace le
         VkSwapchainKHR swapChain_;
         VkFormat swapChainImageFormat_;
         VkExtent2D swapChainExtent_;
+        VkPipelineLayout pipelineLayout_;
 
         std::vector<VkImage> swapChainImages_;
         std::vector<VkImageView> swapChainImageViews_;
@@ -107,6 +111,8 @@ namespace le
 
         std::vector<const char*> getRequiredExtensions();
 
+        std::vector<char> readFile(const std::string_view& fileName);
+
         static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 
         VkResult CreateDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugUtilsMessengerEXT* pDebugMessenger);
@@ -121,5 +127,6 @@ namespace le
 
         VkExtent2D selectSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 
+        VkShaderModule createShaderModule(const std::vector<char>& sourceCode);
     };
 }
