@@ -13,8 +13,6 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include <shaderc/shaderc.hpp>
-
 namespace le
 {
     class LineEngine
@@ -54,6 +52,10 @@ namespace le
 
         ~LineEngine();
     private:
+        bool isFramebufferResized = false;
+        const uint32_t MAX_FRAMES_IN_FLIGHT = 2;
+        uint32_t currentFrame = 0;
+        
         struct DestroyGLFWWindow
         {
             void operator()(GLFWwindow*);
@@ -86,9 +88,17 @@ namespace le
         VkFormat swapChainImageFormat_;
         VkExtent2D swapChainExtent_;
         VkPipelineLayout pipelineLayout_;
+        VkRenderPass renderPass_;
+        VkPipeline graphicsPipeline_;
+        VkCommandPool commandPool_;
+        std::vector<VkCommandBuffer> commandBuffers_;
+        std::vector<VkSemaphore> imageAvailableSemaphores_;
+        std::vector<VkSemaphore> renderFinishedSemaphores_;
+        std::vector<VkFence> inFlightFences_;
 
         std::vector<VkImage> swapChainImages_;
         std::vector<VkImageView> swapChainImageViews_;
+        std::vector<VkFramebuffer> swapchainFramebuffers_;
 
         void clean();
         void createGraphicsPipeline();
@@ -102,6 +112,16 @@ namespace le
         void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
         void selectPhysicalDevice();
         void setupDebugMessenger();
+        void createRenderPass();
+        void createFramebuffers();
+        void createCommandPool();
+        void createCommandBuffer();
+        void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
+        void createSyncObjects();
+        void recreateSwapChain();
+        void cleanUpSwapChain();
+
+        void drawFrame();
 
         bool checkDeviceExtensionSupport(VkPhysicalDevice device);
         bool checkValidationLayerSupport();
@@ -128,5 +148,11 @@ namespace le
         VkExtent2D selectSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 
         VkShaderModule createShaderModule(const std::vector<char>& sourceCode);
+
+        static void framebufferResizeCallback(GLFWwindow* window, int width, int height) 
+{
+            auto app = reinterpret_cast<LineEngine*>(glfwGetWindowUserPointer(window));
+            app->isFramebufferResized = true;
+        }
     };
 }

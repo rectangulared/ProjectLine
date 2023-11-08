@@ -1,6 +1,7 @@
 #include "LineEngine.h"
 
-int main() {
+int main() 
+{
     le::LineEngine engine;
     engine.windowHeight_ = 800;
     engine.windowWidth_ = 600;
