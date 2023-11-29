@@ -4,3 +4,6 @@
 #Folders
 x64
 .vs
+.vscode
+subprojects
+builddir

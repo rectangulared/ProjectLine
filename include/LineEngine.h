@@ -9,6 +9,8 @@
 #include <set>
 #include <stdexcept>
 #include <vector>
+#include <cstring>
+#include <limits>
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
